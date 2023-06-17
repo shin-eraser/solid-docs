@@ -77,15 +77,4 @@ For more detailed understanding of how Reactivity works these are useful article
 
 [﻿SolidJS: Reactivity to Rendering](https://indepth.dev/posts/1289/solidjs-reactivity-to-rendering) 
 
-## Considerations
-This approach to reactivity is very powerful and dynamic. It can handle dependencies changing on the fly through executing different branches of conditional code. It also works through many levels of indirection. Any function executed inside a tracking scope is also being tracked.
-
-However, there are some key behaviors and tradeoffs we must be aware of.
-
-1. All reactivity is tracked from function calls whether directly or hidden beneath getter/proxy and triggered by property access. This means where you access properties on reactive objects is important.     
-2. Components and callbacks from control flows are not tracking scopes and only execute once. This means destructuring or doing logic top-level in your components will not re-execute. You must access these Signals, Stores, and props from within other reactive primitives or the JSX for that part of the code to re-evaluate. 
-3. This approach only tracks synchronously. If you have a setTimeout or use an async function in your Effect the code that executes async after the fact won't be tracked. 
-
-
-
 <!--- Eraser file: https://app.eraser.io/workspace/n09HU5pMkFr7MXTg5tvx --->
